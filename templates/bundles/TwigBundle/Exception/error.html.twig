@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page introuvable - La Cave aux Délices{% endblock %}
+
+{% block content %}
+
+    <!-- 404 Error Section Start -->
+
+    <div class="section section-margin overflow-hidden">
+        <div class="container">
+            <div class="row mb-n6">
+                <div class="col-lg-6 mb-6" data-aos="fade-left" data-aos-delay="600">
+                    <div class="about_thumb">
+                        <img class="fit-image" src="{{asset('assets/images/about/404-bacon.jpg') }}" alt="Erreur 404. Cette page n'existe pas!">
+                    </div>
+                </div>
+                <div class="col-lg-6 align-self-center mb-6" data-aos="fade-right" data-aos-delay="600">
+                    <div class="about_content">
+                        <h1><strong>404</strong><br>OUPS!<br>Cette page n'existe pas!</h1>
+{#                        <h2 class="sub-title">OUPS! Cette page n'existe pas!</h2>#}
+                        <h4>Rendez-vous sur la page d'accueil pour poursuivre votre visite</h4><br>
+                        <a href="/" class="btn btn-primary btn-hover-dark rounded-2">A la page d'accueil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 404 Error Section End -->
+{% endblock %}
+

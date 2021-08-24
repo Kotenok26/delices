@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{region.name}} - La Cave aux Délices{% endblock %}
+
+{% block content %}
+    <!--------------------------- Shop Section Start --------------------------------->
+    <div class="section section-margin">
+        <div class="container">
+            <div class="row flex-row-reverse">
+                <div class="col-lg-9 col-12 col-custom">
+                    <h5><a href="{{ path('regions') }}">Retour</a></h5><br>
+
+                    <!-- Section Title Start -->
+                    <div class="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                        <h2 class="title pb-3">{{region.name}}</h2>
+                        <span></span>
+                        <div class="title-border-bottom"></div>
+                    </div>
+                    <!-- Section Title End -->
+
+                    <!------------------------------ Shop Wrapper Start --------------------------->
+                    <div class="row shop_wrapper grid_3 mt-3">
+                        {% for brand in brands %}
+                            <div class="row mb-4 ">
+                                <div class="col-md-8">
+                                    <div class="row g-0 overflow-hidden flex-md-row mb-4  h-md-250 position-relative">
+{#                                        <div class="col-auto d-none d-lg-block">#}
+{#                                            <img src="/uploads/{{ brand.illustration }}" width="130px" alt="{{ brand.name }}">#}
+{#                                        </div>#}
+                                        <div class="col p-4 d-flex flex-column position-static">
+                                            <h3 class="mt-3">{{ brand.name }}</h3>
+                                        </div>
+                                    </div>
+                                </div><hr>
+                            </div>
+
+                                <!------------------------ Single Product Start --------------------->
+                                {% for product in brand.products %}
+                                    <div class="col-lg-4 col-md-4 col-sm-6 product" data-aos="fade-up" data-aos-delay="200">
+                                        {% include 'product/single_product.html.twig' %}
+                                    </div>
+                                {% endfor %}<hr>
+                                <!------------------------ Single Product End ------------------>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-12 col-custom">
+                    <!-- Sidebar Widget Start -->
+                    <aside class="sidebar_widget mt-10 mt-lg-0">
+                        <div class="widget_inner" data-aos="fade-up" data-aos-delay="200">
+                            <div class="widget-list mb-10">
+                                <h2 class="widget-title mt-4 mb-4">Nos Producteurs</h2>
+                                <div class="search-box">
+                                    <ul class="sub-menu">
+                                        {% for brand in brands %}
+                                        <li>
+                                            <a class="blog-overlay mt-4"
+                                               href="{{ path('productByBrand', {'id':brand.id}) }}">
+                                                <img src="/uploads/{{ brand.illustration }}" width="150px" alt="{{ brand.name }}">
+{#                                                <p class="text-sm-center">{{ brand.name }}</p>#}
+                                            </a>
+                                        </li><br>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                    <!-- Sidebar Widget End -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

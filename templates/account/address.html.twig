@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes adresses - La Cave aux Délices{% endblock %}
+
+{% block content %}
+    <!-- Breadcrumb Section Start -->
+    <div class="section">
+        <div class="breadcrumb-area bg-light">
+            <div class="container-fluid">
+                <div class="breadcrumb-content text-center">
+                    <h1 class="title">L'espace personnel : {{ app.user.firstname }}</h1>
+                    <ul>
+                        <li>
+                            <a href="/">Accueil </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('account') }}">Mon compte </a>
+                        </li>
+                        <li class="active">Gerer mes adresses</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section End -->
+
+    <div class="container">
+
+        <a href="{{ path('account_address_add') }}" class="newsletter-btn btn btn-primary btn-hover-dark mt-3 mb-5">Ajouter une adresse</a>
+        <hr>
+        {#        {{ dump(app.user) }}#}
+        {%  if app.user.addresses|length == 0 %}
+            <p class="text-center">
+                Vous n'avez pas encore ajouté d'adresse.
+                Pour en ajouter <a href="{{ path('account_address_add') }}">cliquez ici</a>
+            </p>
+        {% else %}
+            <div class="row">
+                {% for address in app.user.addresses %}
+                    <div class="col-md-4">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ address.name }}</h5>
+                                <p class="card-text">
+                                    {{ address.address }},<br/>
+                                    {{ address.postal }} - {{ address.city }} - {{ address.country }}
+                                </p>
+                                <a href="{{ path('account_address_edit', {'id' : address.id}) }}">Modifier</a> | <a href="{{ path('account_address_delete', {'id' : address.id}) }}">Supprimer</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div><br>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot de passe oublié - Les Magiciens du Fouet{% endblock %}
+
+{% block content %}
+    <!-- Breadcrumb Section Start -->
+    <div class="section">
+        <div class="breadcrumb-area bg-light">
+            <div class="container-fluid">
+                <div class="breadcrumb-content text-center">
+                    <h1 class="title">Réinitialiser mon mot de passe</h1>
+                    <ul>
+                        <li>
+                            <a href="/">Accueil </a>
+                        </li>
+                        <li class="active">Mot de passe oublié</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section End -->
+    <div class="container">
+        <div class="block-small"><br/>
+            {{ form(form) }}<br/><hr>
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-info">{{ message }}</div>
+            {% endfor %}
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-info">{{ message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

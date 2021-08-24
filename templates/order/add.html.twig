@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block javascript %}
+<script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+
+{% block title %}Paiement de ma comande - La Cave aux Délices{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb Section Start -->
+<div class="section">
+    <div class="breadcrumb-area bg-light">
+        <div class="container-fluid">
+            <div class="breadcrumb-content text-center">
+                <h1 class="title">Récapitulatif de la commande</h1>
+                <ul>
+                    <li>
+                        <a href="/">Accueil </a>
+                    </li>
+                    <li class="active">Ma commande</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section End -->
+
+<div class="container">
+    <h5>Vérifiez vos informations avant de payer votre commande</h5>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Adresse de livraison</strong><br/>
+            <div class="form-check mt-4">
+                {{ delivery|raw }}
+            </div>
+            <hr><br/>
+            <strong>Transporteur</strong><br/>
+            <div class="form-check">
+                {{ carrier.name }}<br/>
+                {{ carrier.description }}<br/>
+                {{ (carrier.price / 100)|number_format(2,',', '.') }}€
+            </div>
+        </div>
+        <div class="col-md-6">
+            <strong>Ma commande</strong><br/>
+            <div class="order-summary"><br/>
+                {% set total = null %}
+                {% for key,product in cart %}
+                    <div class="row {% if key > 0 %}mt-2{% endif %}">
+                        <div class="col-3">
+                            <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}"
+                                 height="75px"><br/>
+                        </div>
+                        <div class="col-7 my-auto">
+                            {{ product.product.name }}
+                                x {{ product.quantity }}
+                        </div>
+                        <div class="col-2 my-auto">
+                            {{  ((product.product.price * product.quantity) / 100)|number_format(2, ',', '.') }} €
+                        </div>
+                    </div>
+                    {% set total = total + (product.product.price * product.quantity) %}
+                {% endfor %}
+            </div>
+
+            <hr>
+            <strong>Sous-Total : </strong> {{  (total / 100)|number_format(2, ',', '.') }} €<br/>
+            <strong>Livraison : </strong> {{  (carrier.price / 100)|number_format(2, ',', '.') }} €
+            <hr>
+            <strong>Total : </strong> {{ ((total / 100) + (carrier.price / 100))|number_format(2, ',', '.') }} €
+            <br/><br/>
+
+{#            <form action="/create-checkout-session.php" method="POST">#}
+
+{#                <button type="submit">Payer</button>#}
+
+{#            </form>#}
+            <a class="newsletter-btn btn btn-primary btn-hover-dark w-100" id="checkout-button">Payer {{ ((total / 100) + (carrier.price / 100))|number_format(2, ',', '.') }} €</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        var stripe = Stripe("pk_test_51IhVpsDYRu3qiF9sHSTVQSDnCe5kf4BcRUYKyH9P6Mp478GnZnWIb0r47uYEqOgLLPJJcs0jSUqeSkLeeCPSOTzZ00ZNtrXyuA");
+        var checkoutButton = document.getElementById("checkout-button");
+        checkoutButton.addEventListener("click", function () {
+            fetch("/commande/create-session/{{ reference }}", {
+                method: "POST",
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (session) {
+                    if (session.error == 'order') {
+                        window.location.replace('{{ path('order') }}');
+                    } else {
+                        return stripe.redirectToCheckout({ sessionId: session.id });
+                    }
+                })
+                .then(function (result) {
+                    // If redirectToCheckout fails due to a browser or network
+                    // error, you should display the localized error message to your
+                    // customer using error.message.
+                    if (result.error) {
+                        alert(result.error.message);
+                    }
+                })
+                .catch(function (error) {
+                    console.error("Error:", error);
+                });
+        });
+    </script>
+{% endblock %}
+

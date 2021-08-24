@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{article.title}} - La Cave aux Délices{% endblock %}
+
+{% block content %}
+    <!--------------------- Categories Banner Section Start ------------------------>
+
+    <div class="section">
+        <div class="container mt-10">
+
+            <!-- Products Start -->
+            <div class="row">
+
+                <div class="col-12">
+                    <h5>
+                        <a href="{{ path('articles') }}">Autres conseils</a>
+                    </h5><br>
+                </div>
+
+                <!-- Single Post Details Start -->
+                <div class="blog-details mb-10">
+
+                    <!-- Blog Details Image Start -->
+                    <div class="image mb-6" data-aos="fade-up" data-aos-delay="300">
+                        <img src="/uploads/{{ article.illustration }}" alt="{{ article.title }}">
+                    </div>
+                    <!-- Blog Details Image End -->
+
+                    <!-- Single Post Details Content Start -->
+                    <div class="content" data-aos="fade-up" data-aos-delay="300">
+
+                        <!-- Meta List Start -->
+                        <blockquote class="blockquote mt-5 mb-5">
+
+                            <footer class="blockquote-footer">
+                                <p>Crée par {{article.author}} <br>
+                                le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }}</p>
+                            </footer>
+                        </blockquote>
+                        <!-- Meta List End -->
+
+                        <div class="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                            <h2 class="title pb-3">{{article.title}}</h2>
+                            <div class="title-border-bottom"></div>
+                        </div>
+
+                        <!-- Article Start -->
+                        <div class="desc">
+                            <p>{{article.content | raw}} </p>
+                        </div>
+                        <!-- Article End -->
+                    </div>
+                    <!-- Single Post Details Content End -->
+
+                    <!-- Single Post Details Footer Start -->
+                    <div class="single-post-details-footer mt-10" data-aos="fade-up" data-aos-delay="300">
+
+                        <!-- Social Shear Start -->
+                        <div class="widget-social border-top pt-2">
+                            <h5>
+                                <a href="{{ path('articles') }}">Autres conseils</a>
+                            </h5>
+                        </div>
+                        <!-- Social Shear Start -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

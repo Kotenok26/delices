@@ -1,0 +1,15 @@
+<div class="product-inner">
+    <div class="thumb">
+        <a href="{{ path('product', {'slug' : product.slug}) }}" class="image">
+            <img class="first-image" src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" />
+            <img class="second-image" src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" />
+        </a>
+    </div>
+    <div class="content">
+        <h4 class="sub-title"><a href="{{ path('product', {'slug' : product.slug}) }}">{{ product.brand }}</a></h4>
+        <h5 class="title"><a href="{{ path('product', {'slug' : product.slug}) }}">{{ product.name }}</a></h5>
+        <span class="price">
+            <span class="new">{{ (product.price /100) | number_format(2, ',', '.') }} €</span>
+        </span>
+    </div>
+</div>

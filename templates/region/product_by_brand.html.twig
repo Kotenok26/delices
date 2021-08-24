@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} - La Cave aux Délices{% endblock %}
+
+{% block content %}
+<!--------------------------- Shop Section Start --------------------------------->
+<div class="section section-margin">
+    <div class="container">
+        <div class="row flex-row-reverse">
+            <div class="col-lg-9 col-12 col-custom">
+                <!------------------------------ Shop Wrapper Start --------------------------->
+                <div class="row shop_wrapper grid_3 mt-3">
+                    <!------------------------ Single Product Start --------------------->
+                    {% for product in products %}
+                        <div class="col-lg-4 col-md-4 col-sm-6 product" data-aos="fade-up" data-aos-delay="200">
+                            {% include 'product/single_product.html.twig' %}
+                        </div>
+                    {% endfor %}<hr>
+                    <!------------------------ Single Product End ------------------>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
