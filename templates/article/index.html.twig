@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos conseils - La Cave aux Délices{% endblock %}
+
+{% block content %}
+    <!--------------------- Categories Banner Section Start ------------------------>
+
+    <div class="section">
+        <div class="container mt-10">
+
+            <!-- Products Start -->
+            <div class="row">
+
+                <div class="col-12">
+                    <!-- Section Title Start -->
+                    <div class="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                        <br><h2 class="title pb-3">Nos conseils</h2>
+                        <span></span>
+                        <div class="title-border-bottom"></div>
+                        <h5 class="mt-3 font-italic">Les astuces pour cuisiner avec talent !</h5>
+                    </div>
+                </div>
+
+                <div class="row mb-n8">
+
+                    {% for article in articles %}
+                    <div class="col-md-6 col-lg-4 mb-8" data-aos="fade-up" data-aos-delay="200">
+                            <!-- Single Blog Start -->
+                            <div class="blog-single-post-wrapper">
+                                <p class="date font-italic">Crée le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }}</p>
+                                <div class="blog-thumb">
+                                    <a class="blog-overlay"
+                                       href="{{ path('article', {'slug' : article.slug}) }}">
+                                        <img src="/uploads/{{ article.illustration }}" alt="{{ article.title }}">
+                                    </a>
+                                </div>
+                                <div class="mt-3">
+                                    <h5 class="title">
+                                        <a href="{{ path('article', {'slug' : article.slug}) }}">{{ article.title }}</a>
+                                    </h5>
+                                    <a href="{{ path('article', {'slug' : article.slug}) }}" class="link text-primary">En savoir plus</a>
+                                </div>
+                            </div>
+                        <!-- Single Blog End -->
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

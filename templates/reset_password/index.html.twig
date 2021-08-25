@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot de passe oublié - La Cave aux Délices{% endblock %}
+
+{% block content %}
+        <!-- Breadcrumb Section Start -->
+        <div class="section">
+            <div class="breadcrumb-area bg-light">
+                <div class="container-fluid">
+                    <div class="breadcrumb-content text-center">
+                        <h1 class="title">Réinitialiser mon mot de passe</h1>
+                        <ul>
+                            <li>
+                                <a href="/">Accueil </a>
+                            </li>
+                            <li class="active">Mot de passe oublié</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb Section End -->
+    <div class="container">
+        <form method="post">
+{#            <h1 class="h3 mb-3 font-weight-normal">Réinitialiser mon mot de passe</h1>#}
+            <label for="inputEmail">Votre adresse email</label>
+            <input type="email" name="email" id="inputEmail" placeholder="Votre adresse email" class="form-control" required autofocus>
+
+            <button class="newsletter-btn btn btn-primary btn-hover-dark mt-3 mb-5" type="submit">
+                Valider
+            </button>
+            <hr>
+            <p class="text-center">Ou souhaitez-vous <a href="{{ path('app_login') }}">vous connecter</a> ?</p>
+            <br>
+        </form>
+        {% for message in app.flashes('notice') %}
+            <div class="alert alert-primary">{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endblock %}

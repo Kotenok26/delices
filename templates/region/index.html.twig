@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos régions - La Cave aux Délices{% endblock %}
+
+{% block content %}
+    <!--------------------- Categories Banner Section Start ------------------------>
+    <div class="section">
+        <br>
+        <div class="container mt-10">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Title Start -->
+                    <div class="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                        <br><h2 class="title pb-3">Toutes les Pépites de France pour régaler vos papilles</h2>
+                        <span></span>
+                        <div class="title-border-bottom"></div>
+                        <h5 class="mt-3 font-italic"> En route pour tour de France unique et un Voyage gustatif exclusif !</h5>
+                    </div>
+
+                    <!-- Section Title End -->
+                </div>
+
+                <div class="row mb-n8">
+                    {% for region in regions %}
+                    <div class="col-md-6 col-lg-4 mb-8" data-aos="fade-up" data-aos-delay="200">
+                            <!-- Single Blog Start -->
+                            <div class="blog-single-post-wrapper">
+                                <div class="blog-thumb">
+                                    <a class="blog-overlay"
+                                       href="{{ path('region', {'slug' : region.slug}) }}">
+                                        <img src="/uploads/{{ region.illustration }}" alt="{{ region.name }}">
+                                    </a>
+                                </div>
+                                <div class="blog-content">
+                                    <h3 class="title">
+                                        <a href="{{ path('region', {'slug' : region.slug}) }}">{{ region.name }}</a>
+                                    </h3>
+                                    <a href="{{ path('region', {'slug' : region.slug}) }}" class="link">Découvrir</a>
+                                </div>
+                            </div>
+                            <!-- Single Blog End -->
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------- Categories Banner Section End ------------------------------------->
+
+    <!--------------------------- Best Sellers Section Start ---------------------------------------->
+
+    <div class="section">
+        <div class="container mt-10">
+
+            <!-- Products Start -->
+            <div class="row">
+
+                <div class="col-12">
+                    <!-- Section Title Start -->
+                    <div class="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                        <h2 class="title pb-3">Nos coups de coeur</h2>
+                        <span></span>
+                        <div class="title-border-bottom"></div>
+                    </div>
+                    <!-- Section Title End -->
+                </div>
+
+                <div class="row shop_wrapper grid_3">
+
+                    <!------------------------ Single Product Start --------------------->
+                    {% for product in products %}
+                        <div class="col-lg-3 col-md-3 col-sm-6 product" data-aos="fade-up" data-aos-delay="200">
+                            {% include 'product/single_product.html.twig' %}
+                        </div>
+                    {% endfor %}
+                    <!------------------------ Single Product End ------------------>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------------- Best Sellers Section End ---------------------------------------->
+{% endblock %}

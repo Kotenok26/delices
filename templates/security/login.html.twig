@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - La Cave aux Délices{% endblock %}
+
+{% block content %}
+    <!-- Breadcrumb Section Start -->
+    <div class="section">
+
+        <div class="breadcrumb-area bg-light">
+            <div class="container-fluid">
+                <div class="breadcrumb-content text-center">
+                    <h1 class="title">Connectez-vous</h1>
+                    <ul>
+                        <li>
+                            <a href="/">Accueil </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('register') }}">Inscription </a>
+                        </li>
+                        <li class="active">Connexion</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section End -->
+<div class="container"><br>
+
+    <div class="block-small">
+            <form method="post">
+               <label for="inputEmail">Votre adresse email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" placeholder="Votre adresse email" class="form-control" required autofocus> <br>
+                <label for="inputPassword">Votre mot de passe</label>
+                <input type="password" name="password" id="inputPassword" placeholder="Votre mot de passe" class="form-control" required>
+
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+
+                <button class="newsletter-btn btn btn-primary btn-hover-dark mt-3 mb-5" type="submit">
+                    Se connecter
+                </button>
+                <hr>
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% for message in app.flashes('notice') %}
+                    <div class="alert alert-info">{{ message }}</div>
+                {% endfor %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+                <p class="text-center"><a href="{{ path('reset_password') }}">Mot de passe oublié</a> ?</p>
+                <p class="text-center">Ou souhaitez-vous <a href="{{ path('register') }}">créer un compte</a> ?</p>
+            </form>
+
+    </div><br><br>
+</div>
+{% endblock %}
+

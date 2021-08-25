@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte - La Cave aux Délices{% endblock %}
+
+{% block content %}
+
+    <!-- Breadcrumb Section Start -->
+    <div class="section">
+        <div class="breadcrumb-area bg-light">
+            <div class="container-fluid">
+                <div class="breadcrumb-content text-center">
+                    <h1 class="title">L'espace personnel : {{ app.user.firstname }}</h1>
+                    <ul>
+                        <li>
+                            <a href="/">Accueil </a>
+                        </li>
+                        <li class="active">Mon compte</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section End -->
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="section section-margin overflow-hidden">
+                <div class="container">
+                    <div class="row mb-n6">
+                        <div class="col-lg-6 mb-6" data-aos="fade-left" data-aos-delay="600">
+                            <div class="about_thumb">
+                                <img class="fit-image" src="{{asset('assets/images/brand-logo/admin.svg') }}" alt="Espace administrateur">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 align-self-center mb-6" data-aos="fade-right" data-aos-delay="600">
+                            <div class="about_content">
+                                <h1><strong>{{ app.user.firstname }},</strong><br>vous êtes un<br><strong>administrateur</strong></h1>
+                                <br>
+                                <a href="/admin"class="btn btn-primary btn-hover-dark rounded-2">Accéder au backoffice</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <h5 mb-3 class="text-center text-primary"><strong>{{ app.user.firstname }}, bienvenue dans votre espace personnel !</strong><br></h5>
+        <p mb-3 class="text-center"> C'est ici que vous allez pouvoir gérer toutes vos informations personnelles.</p>
+    <hr><br>
+
+
+    <div class="container">
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title pricing-card-title"><i class="fa fa-unlock-alt"></i></h2>
+                    <a class="btn btn-primary btn-hover-dark rounded-2" href="{{ path('account_password') }}" alt="Modifier mon mot de passe"><span>Modifier<br>mon mot de passe</span></a>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title pricing-card-title"><i class="fa fa-address-card"></i></h2>
+                    <a class="btn btn-primary btn-hover-dark rounded-2" href="{{ path('account_address') }}" alt="Gérer mes adresses"><span>Gérer<br>mes adresses</span></a>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title pricing-card-title"><i class="fa fa-shopping-cart"></i></h2>
+                    <a class="btn btn-primary btn-hover-dark rounded-2" href="{{ path('account_order') }}" alt="Gérer mes commandes"><span>Gérer<br>mes commandes</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande - La Cave aux Délices{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb Section Start -->
+<div class="section">
+    <div class="breadcrumb-area bg-light">
+        <div class="container-fluid">
+            <div class="breadcrumb-content text-center">
+                <h1 class="title">Je passe ma commande</h1>
+                <ul>
+                    <li>
+                        <a href="/">Accueil </a>
+                    </li>
+                    <li class="active">Ma commande</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section End -->
+
+<div class="container">
+    <h5>Choisissez vos préférences avant de passer votre commande sur La Cave aux Délices</h5>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            {% set formHtml %}
+                {{ form_start(form, {action:path('order_recap')}) }}
+                {{ form_label(form.addresses, 'Choisissez votre adresse de livraison') }}
+                <a href="{{ path('account_address_add') }}">Ajouter une nouvelle adresse</a>
+                {{ form_end(form) }}
+            {% endset %}
+            {{ formHtml|replace({'[br]' : '<br/>'})|raw }}
+
+        </div>
+        <div class="col-md-6">
+            <div class="text-center">
+                <b>Récapitulatif de ma commande</b><br/>
+                <p>Votre choix de produits</p>
+            </div>
+            <div class="order-summary">
+                {% for key,product in cart %}
+                    <div class="row {% if key > 0 %}mt-4{% endif %}">
+                        <div class="col-3">
+                            <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}"
+                                 height="75px"><br/>
+                        </div>
+                        <div class="col-7 my-auto">
+                            {{ product.product.name }}<br/>
+                        </div>
+                        <div class="col-2 my-auto">
+                            x {{ product.quantity }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

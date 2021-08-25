@@ -8,6 +8,15 @@
     <div class="container">
         <div class="row flex-row-reverse">
             <div class="col-lg-9 col-12 col-custom">
+                <h5><a href="{{ path('regions') }}">Retour</a></h5><br>
+
+                <!-- Section Title Start -->
+                <div class="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                    <h2 class="title pb-3">{{brand.name}}</h2>
+                    <span></span>
+                    <div class="title-border-bottom"></div>
+                </div>
+                <!-- Section Title End -->
                 <!------------------------------ Shop Wrapper Start --------------------------->
                 <div class="row shop_wrapper grid_3 mt-3">
                     <!------------------------ Single Product Start --------------------->
@@ -18,6 +27,23 @@
                     {% endfor %}<hr>
                     <!------------------------ Single Product End ------------------>
                 </div>
+            </div>
+            <div class="col-lg-3 col-12 col-custom">
+                <!-- Sidebar Widget Start -->
+                <aside class="sidebar_widget mt-10 mt-lg-0">
+                    <div class="widget_inner" data-aos="fade-up" data-aos-delay="200">
+                        <div class="widget-list mb-10">
+                            <div class="search-box">
+                                <ul class="sub-menu">
+                                    <a class="blog-overlay mt-4">
+                                        <img src="/uploads/{{ brand.illustration }}" width="250px" alt="{{ brand.name }}">
+                                    </a>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                <!-- Sidebar Widget End -->
             </div>
         </div>
     </div>

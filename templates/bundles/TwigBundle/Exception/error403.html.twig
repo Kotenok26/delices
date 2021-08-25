@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accès refusé - La Cave aux Délices{% endblock %}
+
+{% block content %}
+
+    <!-- 403 Error Section Start -->
+
+    <div class="section section-margin overflow-hidden">
+        <div class="container">
+            <div class="row mb-n6">
+                <div class="col-lg-6 mb-6" data-aos="fade-left" data-aos-delay="600">
+                    <div class="about_thumb">
+                        <img class="fit-image" src="{{asset('assets/images/about/403.jpg') }}" alt="Erreur 403. Vous n'êtes pas autorisé à acceder à la page Web. Votre connection peut être requise">
+                    </div>
+                </div>
+                <div class="col-lg-6 align-self-center mb-6" data-aos="fade-right" data-aos-delay="600">
+                    <div class="about_content">
+                        <h1><strong>403</strong><br>OUPS!<br>Accès à la page Web refusé</h1>
+                        <h4>Vous n'êtes pas autorisé à acceder à la page Web.<br>
+                            Votre connection peut être requise.</h4>
+                        <h5>Erreur HTTP 403 (Forbiden) : Le serveur a refusé d'executer la demande.</h5><br>
+                        <a href="/" class="btn btn-primary btn-hover-dark rounded-2">A la page d'accueil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 403 Error Section End -->
+{% endblock %}
+

@@ -1,0 +1,308 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil  - La Cave aux Délices{% endblock %}
+
+{% block content%}
+
+    <!-------------------------- Hero/Intro Slider Start ------------------------------------>
+        <div class="section">
+            <div class="hero-slider">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <!----- Single Hero Slider Item Start ----->
+                        {% for header in headers %}
+                        <div class="hero-slide-item-two swiper-slide">
+                            <!-- Hero Slider Background Image Start-->
+                            <div class="hero-slide-bg">
+                                <img src="/uploads/{{ header.illustration }}" alt="{{ header.title }}" />
+                            </div>
+                            <!-- Hero Slider Background Image End-->
+                            <!-- Hero Slider Container Start -->
+                            <div class="container">
+                                <div class="row">
+                                    <div class="hero-slide-content col-lg-8 col-xl-6 col-12 text-lg-center text-left">
+                                        <h4 class="title">
+                                            {{ header.title }}
+                                        </h4>
+                                        <p>{{ header.content }}</p>
+                                        <a href="{{ header.btnUrl }}" class="btn btn-lg btn-primary btn-hover-dark mb-5">{{ header.BtnTitle }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Hero Slider Container End -->
+                        </div>
+                        {% endfor %}
+                        <!------ Single Hero Slider Item End ------>
+                    </div>
+
+                    <!-- Swiper Pagination Start -->
+                    <div class="swiper-pagination d-md-none"></div>
+                    <!-- Swiper Pagination End -->
+
+                    <!-- Swiper Navigation Start -->
+                    <div class="home-slider-prev swiper-button-prev main-slider-nav d-md-flex d-none"><i class="pe-7s-angle-left"></i></div>
+                    <div class="home-slider-next swiper-button-next main-slider-nav d-md-flex d-none"><i class="pe-7s-angle-right"></i></div>
+                    <!-- Swiper Navigation End -->
+                </div>
+            </div>
+    </div>
+    <!-------------------------- Hero/Intro Slider End ---------------------------->
+
+    <!-------------------------- Service Section Start ----------------------------->
+    <div class="section about-feature-bg section-padding">
+        <div class="container">
+{#        <img src="{{asset('assets/images/about/fond-delices.jpg') }}" id="fondecran" class="fondecran">#}
+            <div class="row mb-n6">
+                <div class="col-lg-4 col-md-6 text-center mb-6" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Single Service Start -->
+                    <div class="single-service">
+                        <h2 class="title">Les produits d'excellence</h2>
+                        <p>La Cave aux Délices est l'épicerie fine française pour les gourmets. Vous avez envie de retrouver le goût de vos vacances, de votre enfance ? Découvrir une région que vous ne connaissez pas encore ? Nous avons sélectionné pour vous les spécialités gastronomiques régionales authentiques et des produits du terroir de grande qualité.</p>
+                    </div>
+                    <!-- Single Service End -->
+                </div>
+                <div class="col-lg-4 col-md-6 text-center mb-6" data-aos="fade-up" data-aos-delay="400">
+                    <!-- Single Service Start -->
+                    <div class="single-service">
+                        <h2 class="title">Artisanat d’exception</h2>
+                        <p>Nos artisans incarnent la culture française et gèrent leur entreprise avec des valeurs et un engagement remarquables. Leur talent et leur travail se retraduisent  chaque jour dans l’excellence du produit. Quel plaisir de retrouver le vrai désir et le respect du produit loin des productions industrialisées et standardisées. Participez à l’économie locale des régions françaises. </p>
+                    </div>
+                    <!-- Single Service End -->
+                </div>
+                <div class="col-lg-4 col-md-6 text-center mb-6" data-aos="fade-up" data-aos-delay="600">
+                    <!-- Single Service Start -->
+                    <div class="single-service">
+                        <h2 class="title">Offrez le meilleur</h2>
+                        <p>Grâce à La Cave aux Délices vous ne serez plus jamais en panne d’idées pour tous  vos  cadeaux ! Notre sélection des meilleurs produits français apportera une touche savoureuse et raffinée à vos cadeaux.  Avec un coffret cadeau gastronomique, vous avez la garantie de faire plaisir à tous les gourmets ! </p>
+                    </div>
+                    <!-- Single Service End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------------- Service Section End ---------------------------------------->
+
+    <!--------------------- Categories Banner Section Start ------------------------>
+    <div class="section">
+        <div class="container">
+            <div class="row mb-n6 overflow-hidden mt-10">
+                {% for category in categories %}
+                <!-- Banner Start -->
+                <div class="col-md-6 col-12 mb-6">
+                    <div class="banner" data-aos="fade-right" data-aos-delay="300">
+                        <div class="banner-image">
+                            <a href="{{ path('subcategoryByCategory', {'id':category.id}) }}"><img src="/uploads/{{ category.illustration }}" alt="{{ category.name }}"></a>
+                        </div>
+                        <div class="info">
+                            <div class="small-banner-content">
+                                <h3 class="title">{{ category.name }}</h3>
+                                <a href="{{ path('subcategoryByCategory', {'id':category.id}) }}" class="btn btn-primary btn-hover-dark btn-sm">Découvrir</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Banner End -->
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+    <!--------------------- Categories Banner Section End ------------------------------------->
+
+    <!--------------------------- Best Sellers Section Start ---------------------------------------->
+
+    <div class="section" id="best">
+        <div class="container mt-10">
+
+            <!-- Products Start -->
+            <div class="row">
+
+                <div class="col-12">
+                    <!-- Section Title Start -->
+                    <div class="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                        <h2 class="title pb-3">Nos coups de coeur</h2>
+                        <span></span>
+                        <div class="title-border-bottom"></div>
+                    </div>
+                    <!-- Section Title End -->
+                </div>
+
+                <div class="row shop_wrapper grid_3">
+
+                    <!------------------------ Single Product Start --------------------->
+                    {% for product in products %}
+                        <div class="col-lg-3 col-md-3 col-sm-6 product" data-aos="fade-up" data-aos-delay="200">
+                            {% include 'product/single_product.html.twig' %}
+                        </div>
+                    {% endfor %}
+                    <!------------------------ Single Product End ------------------>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------------- Best Sellers Section End ---------------------------------------->
+
+
+    <!--------------------------- About Section Start ---------------------------------------->
+    <div class="section section-margin overflow-hidden" id="about">
+        <div class="container">
+            <div class="row mb-n6">
+                <div class="col-lg-6 align-self-center mb-6" data-aos="fade-right" data-aos-delay="600">
+                    <div class="about_content">
+                        <h2 class="title">Toutes les pépites de France<br/>pour régaler vos papilles</h2>
+                        <p> Nos produits sont sélectionnés pour leur raffinement, leur saveur et leur style. Notre concept - vous faire découvrir et réunir de beaux produits français et vous offrir une sélection unique d'épicerie fine française haut de gamme, une expérience unique … et une livraison unique. <br> Allez à la rencontre de cette sélection de produits français, et vivez une expérience d'achat simple et très agréable. <br><br>L'equipe de La Cave aux Délices vous accompagne dans vos projets, cadeaux d’entreprise ou événements, grâce à ses services de personnalisation et de livraison. Notre équipe commerciale est à votre service pour répondre à toutes vos demandes. Profitez d’une expédition rapide et soignée.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-6" data-aos="fade-left" data-aos-delay="600">
+                    <div class="about_thumb">
+                        <img class="fit-image" src="{{asset('assets/images/about/1.jpg') }}" alt="About Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------------- About Section End ---------------------------------------->
+
+    <!--------------------------- Feature Section Start ---------------------------------------->
+    <div class="section about-feature-bg section-padding">
+
+        <div class="container">
+            <div class="feature-wrap">
+                <div class="row row-cols-lg-4 row-cols-xl-auto row-cols-sm-2 row-cols-1 justify-content-between mb-n5">
+                    <!-- Feature Start -->
+                    <div class="col mb-5" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature">
+                            <div class="icon text-primary align-self-center">
+                                <img src="{{asset('assets/images/icons/feature-icon-2.png') }}" alt="Livraison rapide">
+                            </div>
+                            <div class="content">
+                                <h5 class="title">Livraison rapide</h5>
+                                <p>Offerte à partir de 100 € d'achat</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Feature End -->
+
+                    <!-- Feature Start -->
+                    <div class="col mb-5" data-aos="fade-up" data-aos-delay="500">
+                        <div class="feature">
+                            <div class="icon text-primary align-self-center">
+                                <img src="{{asset('assets/images/icons/feature-icon-3.png') }}" alt="Cervice clients">
+                            </div>
+                            <div class="content">
+                                <h5 class="title">Service clients</h5>
+                                <p>Tél : +(33)6 00 00 12 03</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Feature End -->
+                    <!-- Feature Start -->
+                    <div class="col mb-5" data-aos="fade-up" data-aos-delay="700">
+                        <div class="feature">
+                            <div class="icon text-primary align-self-center">
+                                <img src="{{asset('assets/images/icons/feature-icon-4.png') }}" alt="Paiement sécurisé">
+                            </div>
+                            <div class="content">
+                                <h5 class="title">Paiement sécurisé</h5>
+                                <p>Carte Bancaire</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Feature End -->
+
+                    <!-- Feature Start -->
+                    <div class="col mb-5" data-aos="fade-up" data-aos-delay="900">
+                        <div class="feature">
+                            <div class="icon text-primary align-self-center">
+                                <img src="{{asset('assets/images/icons/feature-icon-1.png') }}" alt="Offres spéciales">
+                            </div>
+                            <div class="content">
+                                <h5 class="title">Offres spéciales</h5>
+                                <p>Programme de fidelité</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Feature End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------------- Feature Section End ------------------------------------>
+
+
+
+
+    <!--------------------------- Banner Fullwidth Start ---------------------------------------->
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" data-aos="fade-up" data-aos-delay="300">
+                    <div class="banner">
+                        <div class="banner-image">
+                            <img src="{{asset('assets/images/banner/big-banner.jpg') }}" alt="Banner">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <hr> <hr>
+    <!--------------------------- Banner Fullwidth End ---------------------------------------->
+
+    <!--------------------------- Brand Logo Start ---------------------------------------->
+    <div class="section">
+        <div class="container">
+            <div class="border-top">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Brand Logo Wrapper Start -->
+                        <div class="brand-logo-carousel">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+
+                                    <!-- Single Brand Logo Start -->
+                                    <div class="swiper-slide single-brand-logo" data-aos="fade-up" data-aos-delay="300">
+                                        <a href="/brand/11"><img src="{{asset('assets/images/brand-logo/1.png') }}" alt="Brand Logo"></a>
+                                    </div>
+                                    <!-- Single Brand Logo End -->
+
+                                    <!-- Single Brand Logo Start -->
+                                    <div class="swiper-slide single-brand-logo" data-aos="fade-up" data-aos-delay="400">
+                                        <a href="/brand/12"><img src="{{asset('assets/images/brand-logo/2.png') }}" alt="Brand Logo"></a>
+                                    </div>
+                                    <!-- Single Brand Logo End -->
+
+                                    <!-- Single Brand Logo Start -->
+                                    <div class="swiper-slide single-brand-logo" data-aos="fade-up" data-aos-delay="500">
+                                        <a href="/brand/14"><img src="{{asset('assets/images/brand-logo/3.png') }}" alt="Brand Logo"></a>
+                                    </div>
+                                    <!-- Single Brand Logo End -->
+
+                                    <!-- Single Brand Logo Start -->
+                                    <div class="swiper-slide single-brand-logo" data-aos="fade-up" data-aos-delay="600">
+                                        <a href="/brand/15"><img src="{{asset('assets/images/brand-logo/4.png') }}" alt="Brand Logo"></a>
+                                    </div>
+                                    <!-- Single Brand Logo End -->
+
+                                    <!-- Single Brand Logo Start -->
+                                    <div class="swiper-slide single-brand-logo" data-aos="fade-up" data-aos-delay="700">
+                                        <a href="/brand/8"><img src="{{asset('assets/images/brand-logo/5.png') }}" alt="Brand Logo"></a>
+                                    </div>
+                                    <!-- Single Brand Logo End -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Brand Logo Wrapper End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------------- Brand Logo End ---------------------------------------->
+
+
+
+{% endblock %}
+
+
+
