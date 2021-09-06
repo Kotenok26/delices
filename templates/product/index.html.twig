@@ -7,6 +7,7 @@
 <div class="section section-margin">
     <div class="container">
         <div class="row flex-row-reverse">
+                <!------------------------- Shop Wrapper End ------------------------->
             <div class="col-lg-9 col-12 col-custom">
                 <!-- Section Title Start -->
                 <div class="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
@@ -22,59 +23,20 @@
 
                     <!------------------------ Single Product Start --------------------->
                     {% for product in products %}
-                    <div class="col-lg-4 col-md-4 col-sm-6 product" data-aos="fade-up" data-aos-delay="200">
-                        {% include 'product/single_product.html.twig' %}
-                    </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 product" data-aos="fade-up" data-aos-delay="200">
+                            {% include 'product/single_product.html.twig' %}
+                        </div>
                     {% endfor %}
                     <!------------------------ Single Product End ------------------>
                 </div>
-                <!------------------------- Shop Wrapper End ------------------------->
-
-                <!--shop toolbar start-->
-                <div class="shop_toolbar_wrapper mt-10">
-
-                    <!-- Shop Top Bar Left start -->
-                    <div class="shop-top-bar-left">
-                        <div class="shop-short-by mr-4">
-                            <select class="nice-select rounded-0" aria-label=".form-select-sm example">
-                                <option selected>Afficher 12 par page</option>
-                                <option value="1">Afficher 12 par page</option>
-                                <option value="2">Afficher 24 par page</option>
-                                <option value="3">Afficher 30 par page</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- Shop Top Bar Left end -->
-
-                    <!-- Shop Top Bar Right Start -->
-                    <div class="shop-top-bar-right">
-                        <nav>
-                            <ul class="pagination">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <!-- Shopt Top Bar Right End -->
-
+                <div class="pagination mt-8">
+                    {{ knp_pagination_render(products) }}
                 </div>
-                <!--shop toolbar end-->
-
             </div>
 
-                    {% include 'product/search.html.twig' %}
-            </div>
+            {% include 'product/search.html.twig' %}
+
+        </div>
     </div>
 </div>
 

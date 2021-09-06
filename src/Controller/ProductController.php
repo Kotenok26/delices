@@ -6,6 +6,7 @@ use App\Classe\Search;
 use App\Entity\Product;
 use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,7 +24,7 @@ class ProductController extends AbstractController
      * @Route("/nos-produits", name="products")
      */
 
-    public function index(Request $request)
+    public function index(PaginatorInterface $paginator, Request $request)
     {
         $search = new Search();
         $form = $this->createForm(SearchType::class, $search);
@@ -31,16 +32,42 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
+            $products = $paginator->paginate(
+                $this->entityManager->getRepository(Product::class)->findWithSearch($search),
+                $request->query->getInt('page', 1),
+                12
+            );
         } else {
-            $products = $this->entityManager->getRepository(Product::class)->findAll();
+            $products = $paginator->paginate(
+                $this->entityManager->getRepository(Product::class)->findAll(),
+                $request->query->getInt('page', 1),
+                12
+            );
         }
 
         return $this->render('product/index.html.twig', [
             'products' => $products,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+//            'pagination' => $pagination
         ]);
     }
+
+//    public function listAction(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request)
+//    {
+//        $dql   = "SELECT a FROM AcmeMainBundle:Article a";
+//        $query = $em->createQuery($dql);
+//
+//        $pagination = $paginator->paginate(
+//            $query, /* query NOT result */
+//            $request->query->getInt('page', 1), /*page number*/
+//            10 /*limit per page*/
+//        );
+//
+//        // parameters to template
+//        return $this->render('article/list.html.twig', ['pagination' => $pagination]);
+//    }
+
+
 
     /**
      * @Route("/produit/{slug}", name="product")

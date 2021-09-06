@@ -263,6 +263,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if (!$this->articles->contains($article)) {
             $this->articles[] = $article;
             $article->setAuthor($this);
+
         }
 
         return $this;
