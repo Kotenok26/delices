@@ -71,12 +71,7 @@
             <strong>Total : </strong> {{ ((total / 100) + (carrier.price / 100))|number_format(2, ',', '.') }} €
             <br/><br/>
 
-{#            <form action="/create-checkout-session.php" method="POST">#}
-
-{#                <button type="submit">Payer</button>#}
-
-{#            </form>#}
-            <a class="newsletter-btn btn btn-primary btn-hover-dark w-100" id="checkout-button">Payer {{ ((total / 100) + (carrier.price / 100))|number_format(2, ',', '.') }} €</a>
+            <a class="btn btn-primary btn-hover-dark rounded-2 w-100 text-white" id="checkout-button">Payer {{ ((total / 100) + (carrier.price / 100))|number_format(2, ',', '.') }} €</a>
         </div>
     </div>
 </div>

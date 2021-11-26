@@ -11,6 +11,7 @@ use App\Form\SearchType;
 use App\Repository\BrandRepository;
 use App\Repository\RegionRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,11 +47,15 @@ class RegionController extends AbstractController
      * @Route("/régions/{slug}", name="region")
      */
 
-    public function show($slug)
+    public function show($slug, PaginatorInterface $paginator, Request $request)
     {
         $region = $this->entityManager->getRepository(Region::class)->findOneBySlug($slug);
         $brands = $this->entityManager->getRepository(Brand::class)->findByRegion($region);
-        $products = $this->entityManager->getRepository(Product::class)->findByBrand($brands);
+        $products = $paginator->paginate(
+            $this->entityManager->getRepository(Product::class)->findByBrand($brands),
+            $request->query->getInt('page', 1),
+            12
+        );
 //        if(!$brand) {
 //            return $this->redirectToRoute('regions');
 //        }

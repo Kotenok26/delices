@@ -21,13 +21,17 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->addFlash('notice', 'Merci de nous avoir contacté. Notre équiupe va vous repondre dans les meilleurs délais.');
 
+            $formData = $form->getData();
+
+            $content  = "Nom : ".$formData['prenom']." ".$formData['nom']."<br>";
+            $content .= "Email : ".$formData['email']."<br>";
+            $content .= "Message : <br>".$formData['content'];
+
             $mail = new Mail();
+            $mail->send('lacaveauxdelices45@gmail.com', 'La Cave aux Délices', 'Vous avez reçu une nouvelle demande de contact', $content);
 
-            $content = "Bonjour,<br/> Vous avez reçu une nouvelle demande de contact sur le site La Cave aux Délices<br/>";
-            //$form->getData()";
-
-            $mail->send('lacaveauxdelices45@gmail.com', 'La Cave aux Délices', 'Une nouvelle demande de contact', $content);
         }
+
 
         return $this->render('contact/index.html.twig', [
             'form' => $form->createView()

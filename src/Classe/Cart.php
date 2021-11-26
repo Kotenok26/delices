@@ -69,6 +69,12 @@ class Cart
                     continue;
                 }
 
+                if ($quantity > $product_object->getQuantity()){
+                    $quantity = $product_object->getQuantity();
+                    $cart[$id] = $quantity;
+                    $this->session->set('cart', $cart);
+                }
+
                 $cartComplete[] = [
                     'product' => $product_object,
                     'quantity' => $quantity

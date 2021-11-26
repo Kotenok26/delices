@@ -3,42 +3,38 @@
 {% block title %}Nous contacter - La cave aux délices{% endblock %}
 
 {% block content %}
-<!-- Breadcrumb Section Start -->
     <div class="section">
-        <div class="breadcrumb-area bg-light">
-            <div class="container-fluid">
-                <div class="breadcrumb-content text-center">
-                    <h1 class="title">Nous contacter</h1>
-                    <ul>
-                        <li>
-                            <a href="/">Accueil </a>
-                        </li>
-                        <li class="active">Contact</li>
-                    </ul>
+        <div class="container mt-10">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Title Start -->
+                    <div class="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                        <br><h2 class="title pb-3">Contactez-nous</h2>
+                        <span></span>
+                        <div class="title-border-bottom"></div>
+                        <h5 class="mt-3 font-italic"> Restons en contact !</h5>
+                    </div>
+                    <!-- Section Title End -->
+                </div>
+                <div class="col-md-8">
+                    <h5>Toujours à l’écoute et à la recherche de nouveaux produits de qualité, <br/>nous sommes ouvertes à vos suggestions.</h5><br/>
+                    {% for message in app.flashes('notice') %}
+                        <div class="alert alert-info">{{ message }}</div>
+                    {% endfor %}
+                    {{ form(form) }}</div>
+                    <div class="col-md-4">
+                        <h4 class="font-weight-bold text-primary">La Cave aux Délices</h4>
+                        <h5 class="text-uppercase font-weight-ligh">Epicerie fine</h5>
+                        <hr>
+                        <p class="font-weight-bold">+(33)6 00 00 12 03</p>
+                        <p>8 rue des Lylas<br>45100 Fleury-Les-Aubrais<br/>
+                            contact@lacaveauxdelices.com</p>
+                        <br>
+                        <img src="{{asset('assets/images/contact1.jpg') }}" alt="Femme faisant du shopping">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Breadcrumb Section End -->
-.
-    <div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <h5>Toujours à l’écoute et à la recherche de nouveaux produits de qualité, <br/>nous sommes ouvertes à vos suggestions.</h5><br/>
-            {% for message in app.flashes('notice') %}
-                <div class="alert alert-info">{{ message }}</div>
-            {% endfor %}
-            {{ form(form) }}</div>
-        <div class="col-md-4">
-            <strong>La Cave aux Délices</strong>
-            <hr>
-            +(33)6 00 00 12 03<br/>
-            8 rue des Lylas<br>45100 Fleury-Les-Aubrais<br/>
-            contact@lacaveauxdelices.com
-            <br>
-            <img src="{{asset('assets/images/contact1.jpg') }}" alt="Feature Icon">
-        </div>
-    </div>
     </div>
 
 {% endblock %}

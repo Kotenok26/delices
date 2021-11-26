@@ -40,7 +40,7 @@ class ContactType extends AbstractType
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Votre message',
+                'label' => 'Envoyer',
                 'attr' => [
                     'class' => 'btn btn-primary btn-hover-dark rounded-2 mt-3 mb-5'
                 ]

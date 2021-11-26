@@ -62,9 +62,11 @@
                                         <i class="fa fa-minus-circle"></i>
                                     </a>
                                     {{ product.quantity }}
+                                    {% if product.quantity < product.product.quantity %}
                                     <a href="{{ path('add_to_cart', {'id' : product.product.id}) }}">
                                         <i class="fa fa-plus-circle"></i>
                                     </a>
+                                    {% endif %}
                                 </td>
 
                                 <td class="pro-subtotal"><span>{{ ((product.product.price * product.quantity) /100) | number_format(2, ',', '.') }} €</span></td>

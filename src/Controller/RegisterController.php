@@ -42,6 +42,8 @@ class RegisterController extends AbstractController
                 $password = $passwordHasher->hashPassword($user, $user->getPassword());
                 $user->setPassword($password);
 
+//                $user->setToken($this->generateToken());
+
                 $this->entityManager->persist($user);
                 $this->entityManager->flush();
 

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Classe\Cart;
 use App\Classe\Mail;
+use App\Classe\StockManager;
 use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,15 +14,16 @@ class OrderSuccessController extends AbstractController
 {
     private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, StockManager $stockManager)
     {
         $this->entityManager = $entityManager;
+        $this->StockManager = $stockManager;
     }
 
     /**
      * @Route("/commande/merci/{stripeSessionId}", name="order_validate")
      */
-    public function index(Cart $cart, $stripeSessionId)
+    public function index(Cart $cart, StockManager $stockManager, $stripeSessionId)
     {
         $order = $this->entityManager->getRepository(Order::class)->findOneByStripeSessionId($stripeSessionId);
 
@@ -34,7 +36,9 @@ class OrderSuccessController extends AbstractController
             $cart->remove();
 
             // Modifier le statut de notre commande en mettant 1
-            $order->setState(1);;
+            $order->setState(1);
+            // Destockage
+            $stockManager->deStock($order);
             $this->entityManager->flush();
 
             // Envoyer un email à notre client pour lui confirmer sa commande

@@ -60,12 +60,7 @@
                             <div class="main-menu position-relative">
                                 <ul>
                                     <li class="has-children">
-                                        <a href="/"><span>Accueil</span> <i class="fa fa-angle-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="/">Accueil</a></li>
-                                            <li><a href="#best">Nos coups de coeur</a></li>
-                                            <li><a href="#about">Apropos de nous</a></li>
-                                        </ul>
+                                        <a href="/"><span>Accueil</span></a>
                                     </li>
                                     <li class="has-children position-static">
                                         <a href="{{ path('products') }}"><span>Epicerie</span> <i class="fa fa-angle-down"></i></a>
@@ -99,6 +94,8 @@
                         </div>
                         <!-- Header Menu End -->
 
+
+
                         <!-- Header Action Start -->
                         <div class="col-xl-2 col-6">
                             <div class="header-actions">
@@ -121,6 +118,12 @@
                                 <!-- Shopping Cart Header Action Button Start -->
                                 <a href="{{ path('cart') }}" class="header-action-btn header-action-btn-cart">
                                     <i class="pe-7s-cart"></i>
+                                    {% set quantity = 0 %}
+                                    {% for cart in cartLength() %}
+                                        {% set quantity = quantity + cart|length %}
+                                    {% endfor %}
+
+                                    <span class="header-action-num">{{ quantity }}</span>
                                 </a>
                                 <!-- Shopping Cart Header Action Button End -->
 
@@ -256,9 +259,9 @@
                         <div class="single-footer-widget">
                             <h2 class="widget-title">Information</h2>
                             <ul class="widget-list">
-                                <li><a href="#">Qui sommes-nous</a></li>
+                                <li><a href="/">Qui sommes-nous</a></li>
                                 <li><a href="#">Paiement et Livraison</a></li>
-                                <li><a href="#">Conditions générales de vente</a></li>
+                                <li><a href="/cgv">Conditions générales de vente</a></li>
                                 <li><a href="#">Mentions légales</a></li>
                                 <li><a href="#">Utilisation des cookies</a></li>
                             </ul>
