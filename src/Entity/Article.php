@@ -48,10 +48,10 @@ class Article
      */
     private $slug;
 
-    public function __construct()
-    {
-        $this->createdAt = new \ DateTimeImmutable();
-    }
+//    public function __construct()
+//    {
+//        $this->createdAt = new \ DateTimeImmutable();
+//    }
 
     public function getId(): ?int
     {
