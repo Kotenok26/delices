@@ -36,7 +36,7 @@ class RegisterType extends AbstractType
                 'label' => 'Votre email',
                 'constraints' =>new Length(2,2,60),
                 'attr' => [
-                    'placeholder' => 'Un mail de confirmation vous sera envoyé'
+                    'placeholder' => 'Merci de saisir votre adresse email'
                 ]
             ])
             ->add('password', RepeatedType::class, [
