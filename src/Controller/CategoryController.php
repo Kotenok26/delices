@@ -20,7 +20,7 @@ class CategoryController extends AbstractController
         $this->entityManager = $entityManager;
     }
     /**
-     * @Route("/catégories", name="categories")
+     * @Route("/categories", name="categories")
      */
     public function index()
     {
