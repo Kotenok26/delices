@@ -74,6 +74,11 @@ class Product
      */
     private $quantity;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $dlu;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -207,6 +212,18 @@ class Product
     public function setQuantity(?int $quantity): self
     {
         $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    public function getDlu(): ?\DateTimeInterface
+    {
+        return $this->dlu;
+    }
+
+    public function setDlu(?\DateTimeInterface $dlu): self
+    {
+        $this->dlu = $dlu;
 
         return $this;
     }
