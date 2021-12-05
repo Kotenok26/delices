@@ -4,6 +4,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -33,7 +34,17 @@ class ContactType extends AbstractType
                     'placeholder' => 'Merci de saisir votre email'
                 ]
             ])
-            ->add('content', TextareaType::class, [
+            ->add('content', HiddenType::class, [
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'tabindex' => '-1',
+                    'autocomplete' => 'off',
+                    'ref' => 'initHoneyPot'
+                ]
+            ])
+            ->add('content2', TextareaType::class, [
                 'label' => 'Votre message',
                 'attr' => [
                     'placeholder' => 'En quoi pouvons-nous vous aider?'

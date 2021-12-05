@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 class OrderController extends AbstractController
 {
     private $entityManager;
@@ -96,12 +97,11 @@ class OrderController extends AbstractController
                 'cart' => $cart->getFull(),
                 'carrier' => $carriers,
                 'delivery' => $delivery_content,
-                'reference' => $order->getReference()
+                'reference' => $order->getReference(),
+                'apikeypublic' => $_ENV['SP_APIKEY_PUBLIC']
             ]);
         }
 
         return $this->redirectToRoute('cart');
     }
-
-
 }
