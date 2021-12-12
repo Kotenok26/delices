@@ -13,7 +13,7 @@ class Mail
             'Messages' => [
                 [
                     'From' => [
-                        'Email' => "lacaveauxdelices45@gmail.com",
+                        'Email' => "contact@irishka.fr",
                         'Name' => "La Cave aux Délices"
                     ],
                     'To' => [

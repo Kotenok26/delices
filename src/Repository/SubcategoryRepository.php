@@ -21,8 +21,9 @@ class SubcategoryRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param Category $category
      * @return Subcategory[] Returns an array of Subcategory objects
-    */
+     */
 
     public function findByCategory(Category $category): array
     {
