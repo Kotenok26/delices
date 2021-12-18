@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 class ContactType extends AbstractType
 {
@@ -18,18 +19,21 @@ class ContactType extends AbstractType
         $builder
             ->add('prenom', TextType::class, [
                 'label' => 'Votre prénom',
+                'constraints' =>new Length(2,2,30),
                 'attr' => [
                     'placeholder' => 'Merci de saisir votre prénom'
                 ]
             ])
             ->add('nom', TextType::class, [
                 'label' => 'Votre nom',
+                'constraints' =>new Length(2,2,30),
                 'attr' => [
                     'placeholder' => 'Merci de saisir votre nom'
                 ]
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Votre email',
+                'constraints' =>new Length(2,2,60),
                 'attr' => [
                     'placeholder' => 'Merci de saisir votre email'
                 ]
@@ -46,6 +50,7 @@ class ContactType extends AbstractType
             ])
             ->add('content2', TextareaType::class, [
                 'label' => 'Votre message',
+                'constraints' =>new Length(2,2,300),
                 'attr' => [
                     'placeholder' => 'En quoi pouvons-nous vous aider?'
                 ]

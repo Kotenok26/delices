@@ -48,7 +48,6 @@ class RegisterType extends AbstractType
                     'label' =>'Mot de passe',
                     'attr' => [
                         'placeholder' => 'Merci de saisir votre mot de passe'
-
                     ]
                 ],
                 'second_options' => [
@@ -58,13 +57,11 @@ class RegisterType extends AbstractType
                     ]
                 ]
             ])
-
             ->add('submit', SubmitType::class, [
                 'label' => "S'inscrire"
             ])
         ;
     }
-
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
